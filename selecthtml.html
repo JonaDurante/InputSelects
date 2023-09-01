@@ -1,0 +1,29 @@
+<label for="" class="col-sm-2 col-lg-2 col-form-label">Nombre que desees</label>
+<div class="input-group col-sm-2" align="center">
+    <input type="text" id="inputCliente" placeholder="Ingrese codigo, nombre de cliente o dni" class="form-control form-control-sm" aria-label="..." autocomplete="off" onfocus="functionOnFocus('inputCliente')">
+    <div class="input-group-append">
+        <button tabindex="-1" class="btn-sm btn-outline-secondary dropdown-toggle" type="button" onclick="openAutocompleteMenu('inputCliente')"></button>
+    </div>
+    <ul id="ul_inputCliente" class="dropdown-menu dropdown-menu-end"></ul>
+</div>
+
+
+var DataObjectSelect = [
+{ 
+    Id: "inputCliente",  //-- Se usa para reconocer el objeto a trabajar
+    array:"Data con la que queremos cargar el select", 
+    fields: ["Dni", "Nombre", "Codigo"] //-- Campos por los que deseamos buscar en nuestro array y campos que deseamos mostrar en nuestro select
+}, 
+{ Id: "DepositosList", array: "Data con la que queremos cargar el select", fields: ["Detalle", "Codigo"] },
+....
+Podemos agregar tantos ids como select tengamos
+{ Id: "zona", array: () => ZonaFilterByDeposito(), fields: ["Detalle", "Codigo"]}, //-- acá el array es el resultado de una función porque deseamos que zona se recalcule constantemente
+];
+
+En el document ready:
+$(document).ready(function () {
+    
+    LoadSelects();
+    listeners();
+    
+    ..... resto de tu codigo
